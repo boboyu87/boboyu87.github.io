@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>张亦奕 - 个人主页</title>
+    <link rel="stylesheet" crossorigin="" href="./assets/index.css" />
+
+    <!-- ===== 浮动视频入口按钮样式 ===== -->
+    <style>
+      .violet-video-fab {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 9999;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 22px;
+        background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0.85),
+          rgba(207, 250, 254, 0.85));
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1.5px solid rgba(255, 255, 255, 0.95);
+        border-radius: 999px;
+        color: #155e75;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(34, 211, 238, 0.35),
+                    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: fabIn 0.8s ease-out 1.5s both,
+                   fabBob 3.5s ease-in-out 2.3s infinite;
+        cursor: pointer;
+      }
+      .violet-video-fab:hover {
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 18px 45px rgba(34, 211, 238, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+        background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(186, 230, 253, 0.9));
+        animation-play-state: paused;
+      }
+      .violet-video-fab:active { transform: translateY(-2px) scale(1.02); }
+
+      .violet-video-fab .icon {
+        font-size: 18px;
+        animation: iconWobble 2s ease-in-out infinite;
+      }
+      .violet-video-fab .arrow {
+        font-size: 16px;
+        transition: transform 0.3s;
+      }
+      .violet-video-fab:hover .arrow { transform: translateX(4px); }
+
+      @keyframes fabIn {
+        from { opacity: 0; transform: translateY(60px) scale(0.6); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes fabBob {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-6px); }
+      }
+      @keyframes iconWobble {
+        0%, 100% { transform: rotate(0); }
+        25%      { transform: rotate(-8deg); }
+        75%      { transform: rotate(8deg); }
+      }
+
+      /* 移动端：缩小一些 */
+      @media (max-width: 640px) {
+        .violet-video-fab {
+          right: 16px;
+          bottom: 16px;
+          padding: 12px 18px;
+          font-size: 13px;
+        }
+        .violet-video-fab .icon { font-size: 16px; }
+      }
+
+      /* 小提示气泡（鼠标悬停时出现）*/
+      .violet-video-fab::before {
+        content: "6 个实习作品 ✨";
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        margin-bottom: 12px;
+        padding: 8px 14px;
+        background: rgba(21, 94, 117, 0.95);
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 10px;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.3s, transform 0.3s;
+        pointer-events: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+      .violet-video-fab::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        right: 30px;
+        margin-bottom: 6px;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid rgba(21, 94, 117, 0.95);
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+      .violet-video-fab:hover::before,
+      .violet-video-fab:hover::after { opacity: 1; transform: translateY(0); }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- ===== 浮动视频入口按钮（永远可见）===== -->
+    <a href="./videos.html" class="violet-video-fab" aria-label="查看视频作品">
+      <span class="icon">🎬</span>
+      <span>视频作品</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <script type="module" crossorigin="" src="./assets/index.js"></script>
+  </body>
+</html>
