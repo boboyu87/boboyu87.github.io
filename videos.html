@@ -212,14 +212,14 @@
     .video-wrap {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #155e75;
+      background: #155e75; /* 深色侧边，与海洋主题统一 */
       position: relative;
       overflow: hidden;
     }
     .video-wrap video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* 改为 contain：完整显示，不裁切 */
       display: block;
     }
 
