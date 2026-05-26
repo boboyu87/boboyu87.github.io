@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>视频作品 · 张亦奕 Violet</title>
+  <meta name="description" content="张亦奕 Violet 的视频作品集 - 武汉宁美互联科技新媒体策划实习作品" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: #075985;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      background: linear-gradient(180deg,
+        #ecfeff 0%,
+        #cffafe 20%,
+        #a5f3fc 50%,
+        #67e8f9 80%,
+        #22d3ee 100%);
+    }
+
+    .ocean-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image: url('./assets/images/bg_home_new.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.45;
+      animation: bgFloat 20s ease-in-out infinite;
+    }
+    @keyframes bgFloat {
+      0%, 100% { transform: scale(1.05) translateY(0); }
+      50% { transform: scale(1.08) translateY(-10px); }
+    }
+
+    .ocean-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg,
+        rgba(207, 250, 254, 0.4) 0%,
+        rgba(165, 243, 252, 0.35) 50%,
+        rgba(103, 232, 249, 0.3) 100%);
+    }
+
+    .bubble {
+      position: fixed;
+      bottom: -100px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.3));
+      border-radius: 50%;
+      box-shadow: inset -2px -4px 8px rgba(255,255,255,0.4),
+                  0 0 12px rgba(255,255,255,0.5);
+      animation: bubbleFloat linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bubble:nth-child(1) { width: 40px; height: 40px; left: 5%;  animation-duration: 15s; animation-delay: 0s; }
+    .bubble:nth-child(2) { width: 60px; height: 60px; left: 15%; animation-duration: 22s; animation-delay: 3s; }
+    .bubble:nth-child(3) { width: 25px; height: 25px; left: 30%; animation-duration: 12s; animation-delay: 6s; }
+    .bubble:nth-child(4) { width: 50px; height: 50px; left: 50%; animation-duration: 18s; animation-delay: 2s; }
+    .bubble:nth-child(5) { width: 35px; height: 35px; left: 70%; animation-duration: 20s; animation-delay: 5s; }
+    .bubble:nth-child(6) { width: 45px; height: 45px; left: 85%; animation-duration: 16s; animation-delay: 8s; }
+    .bubble:nth-child(7) { width: 30px; height: 30px; left: 92%; animation-duration: 14s; animation-delay: 1s; }
+    @keyframes bubbleFloat {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-110vh) translateX(40px); opacity: 0; }
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 5%;
+      position: relative;
+      z-index: 10;
+    }
+    .logo {
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0e7490;
+      text-decoration: none;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .logo:hover { transform: scale(1.05); }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      border-radius: 999px;
+      color: #0e7490;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateX(-4px);
+      box-shadow: 0 8px 20px rgba(34, 211, 238, 0.3);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+      z-index: 5;
+    }
+    .hero-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0891b2;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      color: #155e75;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 25px rgba(255,255,255,0.7);
+    }
+    .hero-sub {
+      font-size: clamp(13px, 1.4vw, 16px);
+      color: #0891b2;
+      letter-spacing: 4px;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+    .hero-desc {
+      max-width: 600px;
+      margin: 28px auto 0;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #155e75;
+      padding: 0 20px;
+    }
+
+    .videos {
+      max-width: 1100px;
+      margin: 40px auto 80px;
+      padding: 0 5%;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .video-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(34, 211, 238, 0.25),
+                  0 0 0 1px rgba(255,255,255,0.6) inset;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: cardIn 0.8s ease-out forwards;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 80px rgba(34, 211, 238, 0.35),
+                  0 0 0 1px rgba(255,255,255,0.8) inset;
+    }
+    .video-card:nth-child(1) { animation-delay: 0.05s; }
+    .video-card:nth-child(2) { animation-delay: 0.15s; }
+    .video-card:nth-child(3) { animation-delay: 0.25s; }
+    .video-card:nth-child(4) { animation-delay: 0.35s; }
+    .video-card:nth-child(5) { animation-delay: 0.45s; }
+    .video-card:nth-child(6) { animation-delay: 0.55s; }
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .video-card.featured {
+      border: 2px solid rgba(251, 191, 36, 0.5);
+      box-shadow: 0 20px 60px rgba(251, 191, 36, 0.2),
+                  0 0 0 1px rgba(255,255,255,0.6) inset;
+    }
+    .video-card.featured:hover {
+      box-shadow: 0 30px 80px rgba(251, 191, 36, 0.3),
+                  0 0 0 1px rgba(255,255,255,0.8) inset;
+    }
+
+    .video-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #155e75;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-info {
+      padding: 28px 32px 32px;
+    }
+    .video-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .video-tag {
+      padding: 4px 12px;
+      background: linear-gradient(135deg, #bae6fd, #7dd3fc);
+      color: #0c4a6e;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .video-tag.orange {
+      background: linear-gradient(135deg, #fed7aa, #fdba74);
+      color: #7c2d12;
+    }
+    .video-tag.green {
+      background: linear-gradient(135deg, #bbf7d0, #86efac);
+      color: #14532d;
+    }
+    .video-tag.pink {
+      background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+      color: #831843;
+    }
+    .video-tag.gold {
+      background: linear-gradient(135deg, #fde68a, #fcd34d);
+      color: #78350f;
+    }
+    .video-title {
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 800;
+      color: #155e75;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .video-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #0e7490;
+    }
+    .video-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(34, 211, 238, 0.2);
+      font-size: 13px;
+      color: #0891b2;
+    }
+    .video-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 20px 60px;
+      position: relative;
+      z-index: 5;
+    }
+    .footer-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      border-radius: 999px;
+      color: #155e75;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
+      cursor: pointer;
+    }
+    .footer-back:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(34, 211, 238, 0.35);
+    }
+    .signature {
+      margin-top: 28px;
+      font-size: 13px;
+      color: #0e7490;
+      opacity: 0.75;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 5%; }
+      .logo { font-size: 18px; }
+      .back-link { padding: 8px 14px; font-size: 13px; }
+      .hero { padding: 30px 20px 20px; }
+      .hero h1 { font-size: 38px; }
+      .videos { gap: 40px; margin: 20px auto 60px; }
+      .video-info { padding: 20px 22px 24px; }
+      .video-title { font-size: 20px; }
+      .video-desc { font-size: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ocean-bg"></div>
+  <div class="ocean-overlay"></div>
+
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <nav class="nav">
+    <a href="#" class="logo" onclick="goBackSmart(event)">&lt; Violet /&gt;</a>
+    <a href="#" class="back-link" onclick="goBackSmart(event)">
+      <span>←</span>
+      <span>返回主页</span>
+    </a>
+  </nav>
+
+  <header class="hero">
+    <span class="hero-tag">PORTFOLIO</span>
+    <h1>视频作品</h1>
+    <div class="hero-sub">V I D E O &nbsp; W O R K S</div>
+    <p class="hero-desc">
+      新媒体策划实习期间产出的视频作品集，涵盖内容策划、剪辑制作与动态视觉设计。
+      点击播放，欢迎观看 🌊
+    </p>
+  </header>
+
+  <main class="videos">
+
+    <!-- 视频 1 -->
+    <article class="video-card">
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline poster="./images/ningmei_v1.jpg">
+          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_1.MP4" type="video/mp4" />
+          您的浏览器不支持视频播放，请更新浏览器。
+        </video>
+      </div>
+      <div class="video-info">
+        <div class="video-tags">
+          <span class="video-tag">产品宣传</span>
+          <span class="video-tag pink">创意联动</span>
+          <span class="video-tag orange">武汉宁美</span>
+        </div>
+        <h2 class="video-title">主机产品宣传 · 当 IP 遇上数码</h2>
+        <p class="video-desc">
+          为宁美主机产品制作的宣传短片。开头借势宝可梦元素吸引注意力，跳出传统产品视频的严肃感，用更轻巧有趣的方式介绍产品。在「卖产品」和「讲故事」之间找到一个新平衡。
+        </p>
+        <div class="video-meta">
+          <span class="video-meta-item">📍 武汉宁美互联科技</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 视频 2 -->
+    <article class="video-card">
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline poster="./images/ningmei_v2.jpg">
+          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_2.MP4" type="video/mp4" />
+          您的浏览器不支持视频播放，请更新浏览器。
+        </video>
+      </div>
+      <div class="video-info">
+        <div class="video-tags">
+          <span class="video-tag">产品宣传</span>
+          <span class="video-tag green">主打款</span>
+          <span class="video-tag orange">武汉宁美</span>
+        </div>
+        <h2 class="video-title">主打产品速览 · 便宜 × 轻便</h2>
+        <p class="video-desc">
+          宁美主打产品的宣传视频，围绕「价格亲民」和「轻便携带」两个核心卖点展开。搭配带感 BGM，节奏明快冲击感强，让产品卖点在 15 秒内被记住。
+        </p>
+        <div class="video-meta">
+          <span class="video-meta-item">📍 武汉宁美互联科技</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 视频 3 -->
+    <article class="video-card">
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline poster="./images/ningmei_v3.jpg">
+          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_3.MP4" type="video/mp4" />
+          您的浏览器不支持视频播放，请更新浏览器。
+        </video>
+      </div>
+      <div class="video-info">
+        <div class="video-tags">
+          <span class="video-tag">活动纪实</span>
+          <span class="video-tag pink">线下活动</span>
+          <span class="video-tag orange">武汉宁美</span>
+        </div>
+        <h2 class="video-title">快闪服务站 · 活动现场剪辑</h2>
+        <p class="video-desc">
+          线下「快闪服务站」活动纪实视频。剪辑重点在于通过镜头和节奏营造现场人气与互动氛围，同时呈现技术支持与解决方案服务的专业感——让活动看起来既热闹又靠谱。
+        </p>
+        <div class="video-meta">
+          <span class="video-meta-item">📍 武汉宁美互联科技</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 视频 4 -->
+    <article class="video-card">
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline poster="./images/ningmei_v4.jpg">
+          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_4.MP4" type="video/mp4" />
+          您的浏览器不支持视频播放，请更新浏览器。
+        </video>
+      </div>
+      <div class="video-info">
+        <div class="video-tags">
+          <span class="video-tag">个人 IP</span>
+          <span class="video-tag green">已发布</span>
+          <span class="video-tag orange">武汉宁美</span>
+        </div>
+        <h2 class="video-title">老板个人 IP · 上线发布版本</h2>
+        <p class="video-desc">
+          新媒体部门重点项目——老板个人 IP 账号的短视频内容。完整负责剪辑制作并最终上线发布到账号，是个人 IP 内容矩阵中的代表作品之一。
+        </p>
+        <div class="video-meta">
+          <span class="video-meta-item">📍 武汉宁美互联科技</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 视频 5 -->
+    <article class="video-card">
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline poster="./images/ningmei_v5.jpg">
+          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_5.MP4" type="video/mp4" />
+          您的浏览器不支持视频播放，请更新浏览器。
+        </video>
+      </div>
+      <div class="video-info">
+        <div class="video-tags">
+          <span class="video-tag">个人 IP</span>
+          <span class="video-tag pink">我的提案</span>
+          <span class="video-tag orange">武汉宁美</span>
+        </div>
+        <h2 class="video-title">老板个人 IP · 我的剪辑提案</h2>
+        <p class="video-desc">
+          同样面向老板个人 IP 内容方向的剪辑作品，是我自己的剪辑提案版本。这一版尝试用不同的节奏和叙事方式呈现人物质感，是我对个人 IP 视频另一种可能性的探索。
+        </p>
+        <div class="video-meta">
+          <span class="video-meta-item">📍 武汉宁美互联科技</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 视频 6（动态图片） -->
+    <article class="video-card featured">
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline poster="./images/ningmei_motion.jpg">
+          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_motion.MP4" type="video/mp4" />
+          您的浏览器不支持视频播放，请更新浏览器。
+        </video>
+      </div>
+      <div class="video-info">
+        <div class="video-tags">
+          <span class="video-tag gold">✨ 动态视觉</span>
+          <span class="video-tag pink">微博官号</span>
+          <span class="video-tag orange">武汉宁美</span>
+        </div>
+        <h2 class="video-title">官方微博动态海报</h2>
+        <p class="video-desc">
+          自主拍摄并制作的动态图片作品，最终上线至宁美官方微博账号使用。在静态海报基础上叠加动态视觉元素，让画面在信息流中更具吸引力与传播性。
+        </p>
+        <div class="video-meta">
+          <span class="video-meta-item">📍 武汉宁美互联科技</span>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="#" class="footer-back" onclick="goBackSmart(event)">
+      <span>🐠</span>
+      <span>游回主页</span>
+      <span>→</span>
+    </a>
+    <p class="signature">© Violet Zhang · 2026</p>
+  </footer>
+
+  <script>
+    // 智能返回：优先用浏览器历史回到上一页（保留主页 React 状态）
+    // 如果是直接打开 videos.html（没有历史记录），则回到首页
+    function goBackSmart(e) {
+      if (e) e.preventDefault();
+      // 检查 referrer 是否是同一站点
+      var sameSiteReferrer = document.referrer &&
+        document.referrer.indexOf(location.protocol + '//' + location.host) === 0;
+      if (sameSiteReferrer && history.length > 1) {
+        history.back();
+      } else {
+        location.href = './';
+      }
+    }
+
+    // 一次只播放一个视频
+    document.querySelectorAll('video').forEach(function(video) {
+      video.addEventListener('play', function() {
+        document.querySelectorAll('video').forEach(function(other) {
+          if (other !== video && !other.paused) other.pause();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
