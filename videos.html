@@ -216,11 +216,49 @@
       position: relative;
       overflow: hidden;
     }
-    .video-wrap video {
+    .video-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+    .video-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.35);
+      gap: 16px;
+      transition: background 0.3s;
+    }
+    .video-wrap:hover .video-play-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(207,250,254,0.95));
+      border-radius: 999px;
+      color: #155e75;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      transition: all 0.3s;
+    }
+    .play-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+    }
+    .play-hint {
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
 
     .video-info {
@@ -370,10 +408,13 @@
     <!-- 视频 1 -->
     <article class="video-card">
       <div class="video-wrap">
-        <video controls preload="metadata" playsinline poster="./images/ningmei_v1.jpg">
-          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_1.MP4" type="video/mp4" />
-          您的浏览器不支持视频播放，请更新浏览器。
-        </video>
+        <img src="./images/ningmei_v1.jpg" alt="主机产品宣传封面" />
+        <div class="video-play-overlay">
+          <a href="https://pan.baidu.com/s/1qudu99FqoZ-iKv8L-9bTqQ?pwd=1101" target="_blank" class="play-btn">
+            🎬 观看视频
+          </a>
+          <span class="play-hint">提取码：1101</span>
+        </div>
       </div>
       <div class="video-info">
         <div class="video-tags">
@@ -394,10 +435,13 @@
     <!-- 视频 2 -->
     <article class="video-card">
       <div class="video-wrap">
-        <video controls preload="metadata" playsinline poster="./images/ningmei_v2.jpg">
-          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_2.MP4" type="video/mp4" />
-          您的浏览器不支持视频播放，请更新浏览器。
-        </video>
+        <img src="./images/ningmei_v2.jpg" alt="主打产品速览封面" />
+        <div class="video-play-overlay">
+          <a href="https://pan.baidu.com/s/1qudu99FqoZ-iKv8L-9bTqQ?pwd=1101" target="_blank" class="play-btn">
+            🎬 观看视频
+          </a>
+          <span class="play-hint">提取码：1101</span>
+        </div>
       </div>
       <div class="video-info">
         <div class="video-tags">
@@ -418,10 +462,13 @@
     <!-- 视频 3 -->
     <article class="video-card">
       <div class="video-wrap">
-        <video controls preload="metadata" playsinline poster="./images/ningmei_v3.jpg">
-          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_3.MP4" type="video/mp4" />
-          您的浏览器不支持视频播放，请更新浏览器。
-        </video>
+        <img src="./images/ningmei_v3.jpg" alt="快闪服务站封面" />
+        <div class="video-play-overlay">
+          <a href="https://pan.baidu.com/s/1qudu99FqoZ-iKv8L-9bTqQ?pwd=1101" target="_blank" class="play-btn">
+            🎬 观看视频
+          </a>
+          <span class="play-hint">提取码：1101</span>
+        </div>
       </div>
       <div class="video-info">
         <div class="video-tags">
@@ -442,10 +489,13 @@
     <!-- 视频 4 -->
     <article class="video-card">
       <div class="video-wrap">
-        <video controls preload="metadata" playsinline poster="./images/ningmei_v4.jpg">
-          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_4.MP4" type="video/mp4" />
-          您的浏览器不支持视频播放，请更新浏览器。
-        </video>
+        <img src="./images/ningmei_v4.jpg" alt="老板个人IP封面" />
+        <div class="video-play-overlay">
+          <a href="https://pan.baidu.com/s/1qudu99FqoZ-iKv8L-9bTqQ?pwd=1101" target="_blank" class="play-btn">
+            🎬 观看视频
+          </a>
+          <span class="play-hint">提取码：1101</span>
+        </div>
       </div>
       <div class="video-info">
         <div class="video-tags">
@@ -466,10 +516,13 @@
     <!-- 视频 5 -->
     <article class="video-card">
       <div class="video-wrap">
-        <video controls preload="metadata" playsinline poster="./images/ningmei_v5.jpg">
-          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_video_5.MP4" type="video/mp4" />
-          您的浏览器不支持视频播放，请更新浏览器。
-        </video>
+        <img src="./images/ningmei_v5.jpg" alt="剪辑提案封面" />
+        <div class="video-play-overlay">
+          <a href="https://pan.baidu.com/s/1qudu99FqoZ-iKv8L-9bTqQ?pwd=1101" target="_blank" class="play-btn">
+            🎬 观看视频
+          </a>
+          <span class="play-hint">提取码：1101</span>
+        </div>
       </div>
       <div class="video-info">
         <div class="video-tags">
@@ -490,10 +543,13 @@
     <!-- 视频 6（动态图片） -->
     <article class="video-card featured">
       <div class="video-wrap">
-        <video controls preload="metadata" playsinline poster="./images/ningmei_motion.jpg">
-          <source src="http://tfmm1z7t7.hd-bkt.clouddn.com/ningmei_motion.MP4" type="video/mp4" />
-          您的浏览器不支持视频播放，请更新浏览器。
-        </video>
+        <img src="./images/ningmei_motion.jpg" alt="动态海报封面" />
+        <div class="video-play-overlay">
+          <a href="https://pan.baidu.com/s/1qudu99FqoZ-iKv8L-9bTqQ?pwd=1101" target="_blank" class="play-btn">
+            🎬 观看视频
+          </a>
+          <span class="play-hint">提取码：1101</span>
+        </div>
       </div>
       <div class="video-info">
         <div class="video-tags">
